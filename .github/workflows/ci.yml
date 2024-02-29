@@ -95,9 +95,18 @@ jobs:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         run: ./script/minitest-ci
 
+        
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+            token: ${{ secrets.CODECOV_TOKEN }}
+            slug: Malphas4/signon
+
   test-ruby:
     name: Test Ruby
     needs: test-ruby-matrix
+
+
     runs-on: ubuntu-latest
     steps:
       - run: echo "All Minitest tests have passed 🚀"
